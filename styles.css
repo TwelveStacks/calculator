@@ -17,8 +17,10 @@ body {
     justify-content: center;
     align-items: center;
     margin: 10px;
-    border: 2px solid black;
-    padding: 30px;
+    border: 2px solid gray;
+    box-shadow: 2px 2px 2px 1px gray;
+    border-radius: 10px;
+    padding: 50px;
 }
 
 .row {
@@ -29,26 +31,33 @@ body {
 
 .button {
     font-size: 40px;
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 80px;
+    min-width: 80px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px gray;
 }
 
 .button, .outputContainer {
-    margin: 5px;
+    margin: 10px;
 }
 
 .outputContainer {
     display: flex;
-    border: 2px solid;
+    border: 2px solid gray;
+    box-shadow: 2px 2px 2px 1px gray;
     padding: 5px;
     padding-right: 8px;
+    border-radius: 10px;
     flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 20px;
 }
 
 .output {
     display: flex;
     flex-grow: 1;
-    font-size: 40px;
+    font-size: 50px;
     justify-content: end;
 }
 
@@ -59,7 +68,6 @@ body {
 
 .buttonContainer {
     display: flex;
-    margin-top: 20px;
 }
 
 .operatorContainer {
@@ -69,4 +77,22 @@ body {
 
 .operators {    
     font-size: 30px;
+}
+
+.clearContainer {
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.clearButton {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px gray;
+    border: 2px solid black;
+    background-color: rgb(252, 182, 182);
 }
