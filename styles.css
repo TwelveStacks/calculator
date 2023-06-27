@@ -1,0 +1,72 @@
+
+body {
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calcContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 2px solid black;
+    padding: 30px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+}
+
+.button {
+    font-size: 40px;
+    min-height: 40px;
+    min-width: 40px;
+}
+
+.button, .outputContainer {
+    margin: 5px;
+}
+
+.outputContainer {
+    display: flex;
+    border: 2px solid;
+    padding: 5px;
+    padding-right: 8px;
+    flex: 1;
+}
+
+.output {
+    display: flex;
+    flex-grow: 1;
+    font-size: 40px;
+    justify-content: end;
+}
+
+.inner {
+    display: flex;
+    flex: 1;
+}
+
+.buttonContainer {
+    display: flex;
+    margin-top: 20px;
+}
+
+.operatorContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.operators {    
+    font-size: 30px;
+}
