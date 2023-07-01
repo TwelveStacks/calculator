@@ -29,7 +29,7 @@ body {
     display: flex;
 }
 
-.button {
+.button, .opButton {
     font-size: 40px;
     min-height: 80px;
     min-width: 80px;
@@ -37,7 +37,7 @@ body {
     box-shadow: 2px 2px 2px 1px gray;
 }
 
-.button, .outputContainer {
+.button, .outputContainer, .opButton {
     margin: 10px;
 }
 
