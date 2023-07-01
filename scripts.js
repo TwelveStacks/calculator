@@ -16,20 +16,41 @@ function updateDisplay() {
     }
 }
 
+
+// Register operator button inputs
+
+// let operatorInput = document.querySelectorAll('.opButton');
+
+// for(let i = 0; i < operatorInput.length; i++){
+//     operatorInput[i].addEventListener('click', ()=> {
+//         console.log("Pressed: " + operatorInput[i].id)
+//         if(operation == ''){
+//             switch(operatorInput[i].id){
+//                 case 'divison':
+//                     operation = 'division';
+//                     output.textContent = equation + "÷"
+//                     console.log(operatorInput[i])
+//                     break;
+//             }
+//         }
+//     });
+// }
+
+// The number before the operator
 let equation = '';
 
 // Register number button inputs
-let numberInput = document.querySelectorAll('.button') // Select all buttons
+let numberInput = document.querySelectorAll('.button'); // Select all buttons
 
 for(let i = 0; i < numberInput.length; i++){ // Loop through nodelist of buttons
     numberInput[i].addEventListener('click', ()=> {
         switch(operation){ 
             case '': // If operation button is not yet pressed
                 console.log("----------------Pressed " + numberInput[i].value + "--------------");
-                firstNumber += numberInput[i].value; // See which number is pressed and add the value to firstNumber
-                equation += firstNumber // Add number to equation
-                console.log("First numnber = " + firstNumber)
-                firstNumber = ''; // Set first number back to blank to assign new value when button is pressed
+                pressedNumber += numberInput[i].value; // See which number is pressed and add the value to pressedNumber
+                equation += pressedNumber // Add number to equation
+                console.log("Pressed numnber = " + pressedNumber)
+                pressedNumber = ''; // Set first number back to blank to assign new value when button is pressed
                 console.log("Equation = " + equation)
                 updateDisplay(); // Update the display after the changes
                 break;
@@ -46,7 +67,7 @@ let backspace = document.getElementById('backspace');
 
 backspace.addEventListener('click', () => {
     equation = equation.substring(0, equation.length-1) // Remove last character from equation
-    // firstNumber = ''; 
+    // pressedNumber = ''; 
     updateDisplay(); // Update display after changes
     // Show changes in console
     console.log("----------------Pressed Backspace--------------")
@@ -66,14 +87,14 @@ const clearButton = document.getElementById('clear');
 clearButton.addEventListener('click', ()=> {
     // Set everything back to blank
     equation = '';
-    firstNumber = '';
+    pressedNumber = '';
     secondNumber = '';
     operation = '';
     updateDisplay();
     // Show changes in console
     console.log("----------------Pressed Clear--------------")
     console.log("Equation = " + equation)
-    console.log("First number = " + equation)
+    console.log("Pressed number = " + equation)
     
 });
 
@@ -93,11 +114,11 @@ function divide(a, b) {
     return a/b;
 }
 
-let firstNumber = '';
+let pressedNumber = '';
 let secondNumber = '';
 let operation = '';
 
-function operate(firstNumber, secondNumber, operation) {
-    add(firstNumber, secondNumber);
+function operate(pressedNumber, secondNumber, operation) {
+    add(pressedNumber, secondNumber);
 }
 
