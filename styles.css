@@ -48,7 +48,6 @@ body {
     padding: 5px;
     padding-right: 8px;
     border-radius: 10px;
-    flex: 1;
     padding-top: 15px;
     padding-bottom: 15px;
     padding-right: 20px;
@@ -95,4 +94,9 @@ body {
     box-shadow: 2px 2px 2px 1px gray;
     border: 2px solid gray;
     background-color: rgb(252, 182, 182);
+}
+
+.backspace-clear {
+    display: flex;
+    justify-content: end;
 }

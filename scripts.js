@@ -24,14 +24,13 @@ for(let i = 0; i < numberInput.length; i++){
             case '':
                 firstNumber += numberInput[i].value;
                 console.log(firstNumber);
+                output.textContent = firstNumber;
                 break;
             default:
                 secondNumber += numberInput[i].value;
                 console.log(secondNumber);
                 break;
         }
-
-        
     });
 }
 
@@ -49,7 +48,8 @@ clearButton.addEventListener('click', ()=> {
     firstNumber = '';
     secondNumber = '';
     operation = '';
-})
+    output.textContent = 0;
+});
 
 function add(a, b) {
     return a + b;
