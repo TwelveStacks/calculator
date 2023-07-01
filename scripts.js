@@ -19,19 +19,19 @@ function updateDisplay() {
 let equation = '';
 
 // Register number button inputs
-let numberInput = document.querySelectorAll('.button')
+let numberInput = document.querySelectorAll('.button') // Select all buttons
 
-for(let i = 0; i < numberInput.length; i++){
+for(let i = 0; i < numberInput.length; i++){ // Loop through nodelist of buttons
     numberInput[i].addEventListener('click', ()=> {
-        switch(operation){
-            case '':
+        switch(operation){ 
+            case '': // If operation button is not yet pressed
                 console.log("----------------Pressed " + numberInput[i].value + "--------------");
-                firstNumber += numberInput[i].value;
-                equation += firstNumber
+                firstNumber += numberInput[i].value; // See which number is pressed and add the value to firstNumber
+                equation += firstNumber // Add number to equation
                 console.log("First numnber = " + firstNumber)
-                firstNumber = '';
+                firstNumber = ''; // Set first number back to blank to assign new value when button is pressed
                 console.log("Equation = " + equation)
-                updateDisplay();
+                updateDisplay(); // Update the display after the changes
                 break;
             default:
                 secondNumber += numberInput[i].value;
@@ -41,14 +41,16 @@ for(let i = 0; i < numberInput.length; i++){
     });
 }
 
+// Backspace button
 let backspace = document.getElementById('backspace');
 
 backspace.addEventListener('click', () => {
-    equation = equation.substring(0, equation.length-1)
-    firstNumber = '';
+    equation = equation.substring(0, equation.length-1) // Remove last character from equation
+    // firstNumber = ''; 
+    updateDisplay(); // Update display after changes
+    // Show changes in console
     console.log("----------------Pressed Backspace--------------")
     console.log("Equation = " + equation)
-    updateDisplay();
 });
 
 // Operators
@@ -62,11 +64,13 @@ const equalButton = document.getElementById('equal');
 const clearButton = document.getElementById('clear');
 
 clearButton.addEventListener('click', ()=> {
+    // Set everything back to blank
     equation = '';
     firstNumber = '';
     secondNumber = '';
     operation = '';
     updateDisplay();
+    // Show changes in console
     console.log("----------------Pressed Clear--------------")
     console.log("Equation = " + equation)
     console.log("First number = " + equation)
