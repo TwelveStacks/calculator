@@ -146,8 +146,20 @@ const equalButton = document.getElementById('equal')
 equalButton.addEventListener('click', () => {
     switch(operation){
         case 'division':
+            equation = divideFunc(firstNumber, secondNumber).toString();
+            operation = '';
+            secondNumber = '';
+            firstNumber = equation;
+            console.log(equation)
+            updateDisplay();
             break;
         case 'product':
+            equation = multiplyFunc(firstNumber, secondNumber).toString();
+            operation = '';
+            secondNumber = '';
+            firstNumber = equation;
+            console.log(equation)
+            updateDisplay();
             break;
         case 'add':
             equation = addFunc(firstNumber, secondNumber).toString();
@@ -158,6 +170,12 @@ equalButton.addEventListener('click', () => {
             updateDisplay();
             break;
         case 'sub':
+            equation = subFunc(firstNumber, secondNumber).toString();
+            operation = '';
+            secondNumber = '';
+            firstNumber = equation;
+            console.log(equation)
+            updateDisplay();
             break;
     }
 })
