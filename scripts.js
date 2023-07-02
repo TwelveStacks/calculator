@@ -43,10 +43,11 @@ for(let i = 0; i < numberInput.length; i++){ // Loop through nodelist of buttons
             case 'product':
             case 'add':
             case 'sub':
-                secondNumber += numberInput[i].value;
-                equation += secondNumber
+                pressedNumber += numberInput[i].value;
+                equation += pressedNumber;
+                secondNumber += pressedNumber;
                 console.log("Second Number: " + secondNumber);
-                secondNumber = '';
+                pressedNumber = '';
                 console.log("Equation = " + equation)
                 updateDisplay(); // Update the display after the changes
                 break;
@@ -66,8 +67,10 @@ backspace.addEventListener('click', () => {
         case '-':
             equation = equation.substring(0, equation.length-1) // Remove last character from equation
             operation = '';
+            firstNumber = '';
             console.log(equation)
             console.log(operation)
+            secondNumber = secondNumber.substring(0, equation.length-1)
             break;
         default:
             equation = equation.substring(0, equation.length-1) // Remove last character from equation
@@ -81,12 +84,11 @@ backspace.addEventListener('click', () => {
 });
 
 // Operators
-const divisionButton = document.getElementById('division');
-const productButton = document.getElementById('product');
-const addButton = document.getElementById('add');
-const subButton = document.getElementById('sub');
-const decimalButton = document.getElementById('decimal');
-const equalButton = document.getElementById('equal');
+// const divisionButton = document.getElementById('division');
+// const productButton = document.getElementById('product');
+// const addButton = document.getElementById('add');
+// const subButton = document.getElementById('sub');
+// const decimalButton = document.getElementById('decimal');
 
 // Register operator button inputs
 
@@ -98,6 +100,7 @@ for(let i = 0; i < operatorInput.length; i++){
         console.log("Pressed: " + operatorInput[i].value)
         console.log(operatorInput[i].id)
         if(operation == '' && equation !== '' && equation !== '0'){
+            firstNumber = '';
             switch(operatorInput[i].id){
                 case 'division':
                     operation = 'division';
@@ -136,6 +139,29 @@ for(let i = 0; i < operatorInput.length; i++){
     });
 }
 
+// Equal button
+
+const equalButton = document.getElementById('equal')
+
+equalButton.addEventListener('click', () => {
+    switch(operation){
+        case 'division':
+            break;
+        case 'product':
+            break;
+        case 'add':
+            equation = addFunc(firstNumber, secondNumber).toString();
+            operation = '';
+            secondNumber = '';
+            firstNumber = equation;
+            console.log(equation)
+            updateDisplay();
+            break;
+        case 'sub':
+            break;
+    }
+})
+
 // Clear display
 
 const clearButton = document.getElementById('clear');
@@ -146,6 +172,7 @@ clearButton.addEventListener('click', ()=> {
     pressedNumber = '';
     secondNumber = '';
     operation = '';
+    firstNumber = '';
     updateDisplay();
     // Show changes in console
     console.log("----------------Pressed Clear--------------")
@@ -155,7 +182,8 @@ clearButton.addEventListener('click', ()=> {
 });
 
 function addFunc(a, b) {
-    return a + b;
+    console.log(a + " + " + b)
+    return parseFloat(a) + parseFloat(b);
 }
 
 function subFunc(a, b) {
@@ -170,5 +198,61 @@ function divideFunc(a, b) {
     return a/b;
 }
 
+function evaluteFunc() {
+    if(operation == 'division'){
+        equation = divideFunc(firstNumber, secondNumber);
+        secondNumber = '';
+        operation = '';
+        console.log("Reset")
+        updateDisplay();
+    }
+    else if(operation == 'product'){
+        equation = multiplyFunc(firstNumber, secondNumber);
+        secondNumber = '';
+        operation = '';
+        console.log("Reset")
+        updateDisplay();
+    }
+    else if(operation == 'add'){
+        equation = addFunc(firstNumber, secondNumber);
+        secondNumber = '';
+        operation = '';
+        console.log("Reset")
+        updateDisplay();
+    }
+    else if(operation == 'sub'){
+        equation = subFunc(firstNumber, secondNumber);
+        secondNumber = '';
+        operation = '';
+        console.log("Reset")
+        updateDisplay();
+    }
+    // switch(operation){
+    //     case 'division':
+    //         equation, output.textContent = divideFunc(firstNumber, secondNumber);
+    //         secondNumber = '';
+    //         operation = '';
+    //         console.log("Reset")
+    //         break;
+    //     case 'product':
+    //         equation, output.textContent = multiplyFunc(firstNumber, secondNumber);
+    //         secondNumber = '';
+    //         operation = '';
+    //         console.log("Reset")
+    //         break;
+    //     case 'add':
+    //         equation, output.textContent = addFunc(firstNumber, secondNumber);
+    //         secondNumber = '';
+    //         operation = '';
+    //         console.log("Reset")
+    //         break;
+    //     case 'sub':
+    //         equation, output.textContent = subFunc(firstNumber, secondNumber);
+    //         secondNumber = '';
+    //         operation = '';
+    //         console.log("Reset")
+    //         break;
+    // }
+}
 
 
