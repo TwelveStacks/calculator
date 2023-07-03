@@ -2,6 +2,7 @@ let pressedNumber = '';
 let secondNumber = '';
 let operation = '';
 
+const equationOutput = document.getElementById('equationOutput');
 
 const output = document.getElementById('outputDisplay');
 
@@ -36,7 +37,7 @@ for(let i = 0; i < numberInput.length; i++){ // Loop through nodelist of buttons
                 equation += pressedNumber // Add number to equation
                 console.log("Pressed numnber = " + pressedNumber)
                 pressedNumber = ''; // Set first number back to blank to assign new value when button is pressed
-                console.log("Equation = " + equation)
+                console.log("1. Equation = " + equation)
                 updateDisplay(); // Update the display after the changes
                 break;
             case 'division':
@@ -48,15 +49,36 @@ for(let i = 0; i < numberInput.length; i++){ // Loop through nodelist of buttons
                 secondNumber += pressedNumber;
                 console.log("Second Number: " + secondNumber);
                 pressedNumber = '';
-                console.log("Equation = " + equation)
+                console.log("2. Equation = " + equation)
                 updateDisplay(); // Update the display after the changes
                 break;
         }
     });
 }
 
+// Decimal button
+
+const decimalButton = document.getElementById('decimal');
+
+// Check if second number has decimal
+let decimalCounter = false; 
+
+decimalButton.addEventListener('click', () => {
+    if(!equation.includes('.') && operation == ''){
+        equation += '.';
+        updateDisplay();
+    } else if(equation.includes('.') && operation != '' && decimalCounter == false){
+        equation += '.';
+        if(secondNumber !== ''){
+            secondNumber += '.'
+        }
+        decimalCounter = true;
+        updateDisplay();
+    }
+});
+
 // Backspace button
-let backspace = document.getElementById('backspace');
+const backspace = document.getElementById('backspace');
 
 backspace.addEventListener('click', () => {
     console.log("Deleted: " + (equation.slice(-1)))
@@ -70,25 +92,25 @@ backspace.addEventListener('click', () => {
             firstNumber = '';
             console.log(equation)
             console.log(operation)
-            secondNumber = secondNumber.substring(0, equation.length-1)
+            break;
+        case '.':
+            equation = equation.substring(0, equation.length-1) // Remove last character from equation
+            decimalCounter = false;
             break;
         default:
-            equation = equation.substring(0, equation.length-1) // Remove last character from equation
+            equation = equation.substring(0, equation.length-1) // Remove last character from equation 
+    if(secondNumber !== ''){
+        secondNumber = secondNumber.substring(0, secondNumber.length-1)
     }
-    
+    console.log("Second Number: " + secondNumber)
+}
+
     // pressedNumber = ''; 
     updateDisplay(); // Update display after changes
     // Show changes in console
     console.log("----------------Pressed Backspace--------------")
     console.log("Equation = " + equation)
 });
-
-// Operators
-// const divisionButton = document.getElementById('division');
-// const productButton = document.getElementById('product');
-// const addButton = document.getElementById('add');
-// const subButton = document.getElementById('sub');
-// const decimalButton = document.getElementById('decimal');
 
 // Register operator button inputs
 
@@ -98,16 +120,16 @@ let firstNumber = ''
 for(let i = 0; i < operatorInput.length; i++){
     operatorInput[i].addEventListener('click', ()=> {
         console.log("Pressed: " + operatorInput[i].value)
-        console.log(operatorInput[i].id)
+        console.log("Id: " + operatorInput[i].id)
         if(operation == '' && equation !== '' && equation !== '0'){
             firstNumber = '';
             switch(operatorInput[i].id){
                 case 'division':
                     operation = 'division';
                     firstNumber += equation;
-                    equation += operatorInput[i].value                    
-                    console.log("Equation: " + equation)
-                    console.log("Operation: " + operation)
+                    equation += operatorInput[i].value;                
+                    console.log("Equation: " + equation);
+                    console.log("Operation: " + operation);
                     updateDisplay();
                     break;
                 case 'product':
@@ -147,37 +169,42 @@ equalButton.addEventListener('click', () => {
     switch(operation){
         case 'division':
             equation = divideFunc(firstNumber, secondNumber).toString();
+            console.log("Function output" + equation)
             operation = '';
             secondNumber = '';
             firstNumber = equation;
-            console.log(equation)
+            console.log("After" + equation)
             updateDisplay();
             break;
         case 'product':
             equation = multiplyFunc(firstNumber, secondNumber).toString();
+            console.log("Function output" + equation)
             operation = '';
             secondNumber = '';
             firstNumber = equation;
-            console.log(equation)
+            console.log("After" + equation)
             updateDisplay();
             break;
         case 'add':
             equation = addFunc(firstNumber, secondNumber).toString();
+            console.log("Function output " + equation)
             operation = '';
             secondNumber = '';
             firstNumber = equation;
-            console.log(equation)
+            console.log("First number: " + firstNumber)
             updateDisplay();
             break;
         case 'sub':
             equation = subFunc(firstNumber, secondNumber).toString();
+            console.log("Function output" + equation)
             operation = '';
             secondNumber = '';
             firstNumber = equation;
-            console.log(equation)
+            console.log("After" + equation)
             updateDisplay();
             break;
     }
+    decimalCounter = false;
 })
 
 // Clear display
@@ -186,11 +213,13 @@ const clearButton = document.getElementById('clear');
 
 clearButton.addEventListener('click', ()=> {
     // Set everything back to blank
+    equationOutput.textContent = '\xa0';
     equation = '';
     pressedNumber = '';
     secondNumber = '';
     operation = '';
     firstNumber = '';
+    decimalCounter = false;
     updateDisplay();
     // Show changes in console
     console.log("----------------Pressed Clear--------------")
@@ -200,19 +229,24 @@ clearButton.addEventListener('click', ()=> {
 });
 
 function addFunc(a, b) {
-    console.log(a + " + " + b)
-    return parseFloat(a) + parseFloat(b);
+    equationOutput.textContent = a + "+" + b
+    console.log(parseFloat(a) + " + " + parseFloat(b))
+    console.log(Number(a) + " + " + Number(b))
+    return Number(a) + Number(b);
 }
 
 function subFunc(a, b) {
+    equationOutput.textContent = a + "-" + b
     return a - b;
 }
 
 function multiplyFunc(a, b) {
+    equationOutput.textContent = a + "x" + b
     return a*b;
 }
 
 function divideFunc(a, b) {
+    equationOutput.textContent = a + "÷" + b
     return a/b;
 }
 

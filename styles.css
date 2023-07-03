@@ -29,7 +29,7 @@ body {
     display: flex;
 }
 
-.button, .opButton {
+.button, .opButton, .decimalButton {
     font-size: 40px;
     min-height: 80px;
     min-width: 80px;
@@ -37,12 +37,13 @@ body {
     box-shadow: 2px 2px 2px 1px gray;
 }
 
-.button, .outputContainer, .opButton {
+.button, .outputContainer, .opButton, .decimalButton {
     margin: 10px;
 }
 
 .outputContainer {
     display: flex;
+    flex-direction: column;
     border: 2px solid gray;
     box-shadow: 2px 2px 2px 1px gray;
     padding: 5px;
@@ -97,6 +98,11 @@ body {
 }
 
 .backspace-clear {
+    display: flex;
+    justify-content: end;
+}
+
+#equationOutput {
     display: flex;
     justify-content: end;
 }
