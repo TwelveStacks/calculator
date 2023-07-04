@@ -67,13 +67,25 @@ decimalButton.addEventListener('click', () => {
     if(!equation.includes('.') && operation == ''){
         equation += '.';
         updateDisplay();
-    } else if(equation.includes('.') && operation != '' && decimalCounter == false){
-        equation += '.';
-        if(secondNumber !== ''){
-            secondNumber += '.'
-        }
-        decimalCounter = true;
-        updateDisplay();
+    } else if(operation !== '' && decimalCounter == false){
+        switch(equation.slice(-1)){
+            case '÷':
+            case 'x':
+            case '+':
+            case '-':
+                equation += '0.';
+                secondNumber += '0.';
+                decimalCounter = true;
+                updateDisplay();
+                break;
+            default:
+                equation += '.';
+                if(secondNumber !== ''){
+                    secondNumber += '.'
+                }
+                decimalCounter = true;
+                updateDisplay();
+        }   
     }
 });
 
