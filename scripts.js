@@ -231,23 +231,22 @@ clearButton.addEventListener('click', ()=> {
 function addFunc(a, b) {
     equationOutput.textContent = a + "+" + b
     console.log(parseFloat(a) + " + " + parseFloat(b))
-    console.log(Number(a) + " + " + Number(b))
-    return Number(a) + Number(b);
+    return Math.round((parseFloat(a) + parseFloat(b))*100) / 100;
 }
 
 function subFunc(a, b) {
     equationOutput.textContent = a + "-" + b
-    return a - b;
+    return Math.round((parseFloat(a) - parseFloat(b))*100) / 100;
 }
 
 function multiplyFunc(a, b) {
     equationOutput.textContent = a + "x" + b
-    return a*b;
+    return Math.round((parseFloat(a) * parseFloat(b))*100) / 100;
 }
 
 function divideFunc(a, b) {
     equationOutput.textContent = a + "÷" + b
-    return a/b;
+    return Math.round((parseFloat(a) / parseFloat(b))*100) / 100;
 }
 
 function evaluteFunc() {
@@ -279,32 +278,6 @@ function evaluteFunc() {
         console.log("Reset")
         updateDisplay();
     }
-    // switch(operation){
-    //     case 'division':
-    //         equation, output.textContent = divideFunc(firstNumber, secondNumber);
-    //         secondNumber = '';
-    //         operation = '';
-    //         console.log("Reset")
-    //         break;
-    //     case 'product':
-    //         equation, output.textContent = multiplyFunc(firstNumber, secondNumber);
-    //         secondNumber = '';
-    //         operation = '';
-    //         console.log("Reset")
-    //         break;
-    //     case 'add':
-    //         equation, output.textContent = addFunc(firstNumber, secondNumber);
-    //         secondNumber = '';
-    //         operation = '';
-    //         console.log("Reset")
-    //         break;
-    //     case 'sub':
-    //         equation, output.textContent = subFunc(firstNumber, secondNumber);
-    //         secondNumber = '';
-    //         operation = '';
-    //         console.log("Reset")
-    //         break;
-    // }
 }
 
 
